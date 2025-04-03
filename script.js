@@ -1,8 +1,11 @@
 let notes = ["banana", "Rasenmäher"];
-let undoNote = '';
+let undoNote = "";
+let input = document.getElementById('input_area'); 
+let contentRef = document.getElementById("content");
+
 
 function renderNotes() {
-  let contentRef = document.getElementById("content");
+
   contentRef.innerHTML = " "; //Inhalt wird geleert um bei mehrfachem auslösen der Fuction nicht jede Ausführung reinzurendern
 
   for (let indexNote = 0; indexNote < notes.length; indexNote++) {
@@ -11,28 +14,29 @@ function renderNotes() {
   }
 }
 
-function getNoteTemplate (note) {
-  return `<p>${note}</p>`
+function getNoteTemplate(note) {
+  return `<p>${note}</p>`;
 }
-
 
 // notizen hinuzufügen
-function addNote () {
-  notes.push('sius');
-  renderNotes();
-}
-
-function deleteNote(){
-  undoNote = notes.pop()
-  console.log(undoNote);
+function addNote() {
+  contentRef.innerHTML += `<p>${input.value}</p>`;
+  notes.push(input.value)
+  input.value = '';
+  console.log(notes);
   
-  renderNotes()
 }
 
-function undo (){
-  notes.push(undoNote)
+function deleteNote() {
+  for (let index = 0; index < notes.length; index++) {
+    contentRef.innerHTML = notes.pop();
+  }
+}
+
+function undo() {
+  notes.push(undoNote);
   renderNotes();
-  undoNote = '';
+  undoNote = "";
 }
 
 // notizen löschen
