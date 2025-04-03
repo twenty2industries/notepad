@@ -1,12 +1,10 @@
 let notes = ["banana", "Rasenmäher"];
 let undoNote = "";
-let input = document.getElementById('input_area'); 
+let input = document.getElementById("input_area");
 let contentRef = document.getElementById("content");
 
-
 function renderNotes() {
-
-  contentRef.innerHTML = " "; //Inhalt wird geleert um bei mehrfachem auslösen der Fuction nicht jede Ausführung reinzurendern
+  contentRef.innerHTML = " ";
 
   for (let indexNote = 0; indexNote < notes.length; indexNote++) {
     const note = notes[indexNote];
@@ -18,13 +16,12 @@ function getNoteTemplate(note) {
   return `<p>${note}</p>`;
 }
 
-// notizen hinuzufügen
 function addNote() {
-  contentRef.innerHTML += `<p>${input.value}</p>`;
-  notes.push(input.value)
-  input.value = '';
-  console.log(notes);
-  
+  if (input.value) {
+    notes.push(input.value);
+    contentRef.innerHTML += `<p>${input.value}</p>`;
+  }
+  input.value = "";
 }
 
 function deleteNote() {
@@ -38,6 +35,16 @@ function undo() {
   renderNotes();
   undoNote = "";
 }
+
+
+function handleKeyPress(event){
+  if (event.key === "Enter") {
+    addNote();
+  }
+}
+
+document.getElementById('input_area').addEventListener('keydown', addNote);
+
 
 // notizen löschen
 // notizen archieveren
