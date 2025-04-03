@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style/standard.css">
+  <link rel="stylesheet" href="style/assets.css">
+  <title>Notizblock</title>
 </head>
-<body>
-  
+<body onload="renderNotes()">
+  <h1>Notizblock</h1>
+  <div id="content">
+    <p>+ rasenmähen</p>
+  </div>
+  <button onclick="addNote()">add Note</button>
+  <button onclick="deleteNote()">delete note</button>
+  <button onclick="undo()">undo</button>
 </body>
+<script src="script.js"></script>
 </html>
