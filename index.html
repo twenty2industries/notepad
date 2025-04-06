@@ -10,11 +10,13 @@
 </head>
 <body onload="renderNotes()">
   <h1>Notizblock</h1>
-  <div id="content"></div>
-  <input type="text" id="input_area">
+  <input type="text" id="note_input">
   <button onclick="addNote()">add Note</button>
-  <button onclick="deleteNote()">delete note</button>
-  <button onclick="undo()">undo</button>
+  <h2>Notizen</h2>
+  <div id="content"></div>
+  <h2>Papierkorb</h2>
+  <div id="trash_content"></div>
+
 </body>
 <script src="script.js"></script>
 </html>
