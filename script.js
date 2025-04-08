@@ -47,12 +47,12 @@ function transferNoteToTrash(indexNote) {
   let trashNote = notes.splice(indexNote, 1);
   trashNotes.push(trashNote[0]);
   let trashNoteTitle = notesTitles.splice(indexNote, 1);
-  trashNotesTitles.push(trashNoteTitle);
+  trashNotesTitles.push(trashNoteTitle[0]);
   renderNotes();
   renderTrashNotes();
 }
 
 function deleteNote(indexTrashNote) {
-  trashNotes.pop(indexTrashNote);
+  trashNotes.splice(indexTrashNote, 1);
   renderTrashNotes();
 }
