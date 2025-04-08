@@ -1,7 +1,13 @@
-let notesTitles = ["Ba", "Aufgabe"];
-let notes = ["test", "test"];
+let notesTitles = [];
+let notes = [];
 let trashNotesTitles = [];
 let trashNotes = [];
+
+
+function init(){
+  getFromLocalStorage();
+  renderNotes();
+}
 
 function renderNotes() {
   let contentRef = document.getElementById("content");
@@ -39,7 +45,7 @@ function addNote() {
 
   notes.push(noteInput);
   renderNotes();
-
+  saveToLocalStorage()
   noteInputRef.value = " ";
 }
 
@@ -56,3 +62,22 @@ function deleteNote(indexTrashNote) {
   trashNotes.splice(indexTrashNote, 1);
   renderTrashNotes();
 }
+
+//localStorage wird benötigt 
+  //addnote muss die daten ebenfalls in die localstorage speichern 
+  //eine addlocalstorage function die in addnote ausgeführt wird 
+
+function saveToLocalStorage(){
+  localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+//Items in den Local storage bekommen 
+function getFromLocalStorage(){
+  const storageRef = localStorage.getItem("notes");
+  if (storageRef !== null) {
+    let parsedStorageRef = JSON.parse(storageRef);
+    notes = parsedStorageRef;
+  }
+}
+
+//items aus dem Local storage abrufen 
