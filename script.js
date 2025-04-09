@@ -32,21 +32,38 @@ function renderTrashNotes() {
 }
 
 function getNoteTemplate(indexNote) {
-  return `<p>+ title: ${notesTitles[indexNote]}${notes[indexNote]}<button onclick="transferNoteToTrash(${indexNote})">X</button></p>`;
+  return `<p>+ <b>${notesTitles}</b> ${notes[indexNote]}<button onclick="transferNoteToTrash(${indexNote})">X</button></p>`;
 }
 
 function getTrashNoteTemplate(indexTrashNote) {
-  return `<p>+ title: ${trashNotesTitles[indexTrashNote]}${trashNotes[indexTrashNote]}<button onclick="deleteNote(${indexTrashNote})">X</button></p>`;
+  return `<p> <b>${notesTitles}</b> ${trashNotes[indexTrashNote]}<button onclick="deleteNote(${indexTrashNote})">X</button></p>`;
 }
 
 function addNote() {
   const noteInputRef = document.getElementById("note_input");
+  const noteTitleInputRef = document.getElementById("title_input");
+
   let noteInput = noteInputRef.value;
 
+  if (noteTitleInputRef.value == '') {
+    alert('keine angaben in Titel')
+  } else{
   notes.push(noteInput);
   renderNotes();
   saveToLocalStorage()
+  addTitle();
   noteInputRef.value = " ";
+  }
+}
+
+function addTitle() {
+  const noteTitleInputRef = document.getElementById("title_input");
+  let noteTitleInput = noteTitleInputRef.value;
+  notesTitles.push(noteTitleInput);
+  console.log(noteTitleInput);
+  
+  renderNotes();
+  saveToLocalStorage()
 }
 
 function transferNoteToTrash(indexNote) {
@@ -66,12 +83,12 @@ function deleteNote(indexTrashNote) {
 //localStorage wird benötigt 
   //addnote muss die daten ebenfalls in die localstorage speichern 
   //eine addlocalstorage function die in addnote ausgeführt wird 
-
 function saveToLocalStorage(){
   localStorage.setItem("notes", JSON.stringify(notes));
 }
 
 //Items in den Local storage bekommen 
+//items aus dem Local storage abrufen 
 function getFromLocalStorage(){
   const storageRef = localStorage.getItem("notes");
   if (storageRef !== null) {
@@ -79,5 +96,3 @@ function getFromLocalStorage(){
     notes = parsedStorageRef;
   }
 }
-
-//items aus dem Local storage abrufen 
